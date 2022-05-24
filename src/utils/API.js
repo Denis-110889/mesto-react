@@ -8,14 +8,14 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then((res) => this._checkResponce(res));
     };
 
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {        
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then((res) => this._checkResponce(res));
     };
     
     editProfile(name, about) {
@@ -24,7 +24,7 @@ class Api {
             headers: this._headers,
             body: JSON.stringify({ name, about })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then((res) => this._checkResponce(res));
     };
     
     addCard(name, link) {
@@ -33,7 +33,7 @@ class Api {
             headers: this._headers,
             body: JSON.stringify({ name, link })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then((res) => this._checkResponce(res));
     };
 
     deleteCard(id) {
@@ -41,7 +41,7 @@ class Api {
             method: "DELETE",
             headers: this._headers,
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then((res) => this._checkResponce(res));
     };
 
     editUserAvatar(avatar) {
@@ -50,7 +50,7 @@ class Api {
             headers: this._headers,
             body: JSON.stringify({ avatar })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then((res) => this._checkResponce(res));
     };
 
     changeLikeCardStatus(id, isLiked) {
@@ -62,7 +62,11 @@ class Api {
             : fetch(`${this._baseUrl}/cards/${id}/likes`, {
                 method: "DELETE",
                 headers: this._headers,
-            }).then((res) => (res.ok ? res.json() : Promise.reject(res.status)));
+            }).then((res) => this._checkResponce(res));
+    }
+
+    _checkResponce(res){
+        return res.ok ? res.json() : Promise.reject(res.status)
     }
 };
 

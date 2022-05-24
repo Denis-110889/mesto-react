@@ -46,6 +46,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
             placeholder="Имя" 
             minLength="2" 
             maxLength="40" 
+            value={name}
             required
         />
         <span 
@@ -56,6 +57,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
             onChange={inputDescription}
             id="aboutProfile" 
             className="popup__input popup__input_place_about" 
+            value={description}
             name="aboutProfile" 
             type="text" 
             placeholder="Расскажите о себе"

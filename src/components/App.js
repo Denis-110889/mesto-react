@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react"; 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { api} from "../utils/API";
 import EditProfilePopup from "./EditProfilePopup";
