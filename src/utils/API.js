@@ -44,22 +44,6 @@ class Api {
         .then(res => res.ok ? res.json() : Promise.reject(res.status))
     };
 
-    deleteLike(id) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-            method: "DELETE",
-            headers: this._headers,
-        })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    };
-
-    addLike(id) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-            method: "PUT",
-            headers: this._headers,
-        })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    };
-
     editUserAvatar(avatar) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: "PATCH",
@@ -68,6 +52,18 @@ class Api {
         })
         .then(res => res.ok ? res.json() : Promise.reject(res.status))
     };
+
+    changeLikeCardStatus(id, isLiked) {
+        return isLiked
+            ? fetch(`${this._baseUrl}/cards/${id}/likes`, {
+                method: "PUT",
+                headers: this._headers,
+            }).then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+            : fetch(`${this._baseUrl}/cards/${id}/likes`, {
+                method: "DELETE",
+                headers: this._headers,
+            }).then((res) => (res.ok ? res.json() : Promise.reject(res.status)));
+    }
 };
 
 export  const api = new Api({

@@ -16,3 +16,7 @@
     opacity: .5;
     transition: .15s;
 }
+
+.element__trash-button {
+    display: none;
+}
